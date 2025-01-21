@@ -1,1 +1,8 @@
-<p>todos works!</p>
+<!-- call it directly from service and array item as below -->
+<p>{{ todoService.todoItems[0].title}}</p>
+<!-- or from the signal as below -->
+<p>{{ todoItems()[0].title}}</p>
+<!-- or using built in for loop from angular -->
+ @for (todo of todoItems(); track todo.id){
+    <p>{{ todo.title }}</p>
+ }

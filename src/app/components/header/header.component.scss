@@ -6,4 +6,29 @@ background-color: #323;
 color: aliceblue;
 align-items: center;
 justify-content: space-between;
+
+nav {
+display: flex;
+width: 100%;
+justify-content: space-between;
+align-items: center;
+
+> span {
+    cursor: pointer;
+    &:hover {
+    color:#777
+}
+}
+
+ul {
+list-style: none;
+
+li {
+    cursor: pointer;
+    &:hover {
+    color:#777
+}}
+}
+
+}
 }
