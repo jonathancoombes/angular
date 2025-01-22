@@ -1,8 +1,18 @@
 <!-- call it directly from service and array item as below -->
-<p>{{ todoService.todoItems[0].title}}</p>
+<!-- <p>{{ todoService.todoItems[0].title}}</p> -->
 <!-- or from the signal as below -->
-<p>{{ todoItems()[0].title}}</p>
+<!-- <p>{{ todoItems()[0].title}}</p> -->
 <!-- or using built in for loop from angular -->
+
+<h3>Todo Items</h3>
+
+<!-- The folowing shows built in control flow blocks to render items conditionally-->
+@if(!todoItems().length){
+    <p>Loading...</p>
+}
+
+ <ul class="todos">
  @for (todo of todoItems(); track todo.id){
-    <p>{{ todo.title }}</p>
+    <app-todo-item (todoToggled)="updateTodoItem($event)" [todo]="todo" />
  }
+ </ul>
