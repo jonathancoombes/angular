@@ -1,16 +1,19 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal} from '@angular/core';
+import { FormsModule} from '@angular/forms';
 import { TodosService } from '../services/todos.service';
 import { Todo } from '../model/todo.type';
 import { catchError } from 'rxjs';
 import { TodoItemComponent } from '../components/todo-item/todo-item.component';
+import { FilterTodosPipe } from '../pipes/filter-todos.pipe';
 
 @Component({
   selector: 'app-todos',
-  imports: [TodoItemComponent],
+  imports: [TodoItemComponent, FormsModule, FilterTodosPipe],
   templateUrl: './todos.component.html',
   styleUrl: './todos.component.scss'
 })
 export class TodosComponent implements OnInit{ 
+  searchTerm = signal("");
   todoService = inject(TodosService);
   todoItems = signal<Array<Todo>>([]);
 
@@ -35,8 +38,8 @@ this.todoService
           };
         }
         return todo;
-      }) 
-    })
+      });
+    });
  }
 
 }

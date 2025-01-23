@@ -11,8 +11,22 @@
     <p>Loading...</p>
 }
 
- <ul class="todos">
- @for (todo of todoItems(); track todo.id){
-    <app-todo-item (todoToggled)="updateTodoItem($event)" [todo]="todo" />
- }
- </ul>
+<!-- The folowing shows filtering implemented using pipes-->
+<form>
+    <label>Filter Todos</label>
+    <input
+      name="searchTerm"
+      [(ngModel)]="searchTerm"
+      placeholder="Search todos..."
+    />
+  </form>
+  <ul class="todos">
+    @for (todo of todoItems() | filterTodos: searchTerm() ; track todo.id) {
+        <li>
+          <app-todo-item
+            (todoToggled)="updateTodoItem($event)"
+            [todo]="todo">
+          </app-todo-item>
+        </li>
+      }
+  </ul>
